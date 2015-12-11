@@ -1,0 +1,53 @@
+==== Installation
+
+First you'll need to install some prerequisites:
+* a version manager(git)
+* along with a user friendly UI for it (SourceTree)
+* a configuration manager(CMake)
+* an up-to-date compiler
+* Additional libraries: Boost
+
+Please refer to the Appendices for additional installation steps for
+other specific/optional targets. (emscrippten, asciidoctor, latex ...)
+
+===== OSX
+
+You'll need to install XCode and SourceTree.
+
+[source,bash]
+brew update
+brew install git cmake boost
+
+===== Linux
+
+You'll probably need a "sudo".
+
+[source,bash]
+apt-get update
+apt-get install git cmake libboost-dev
+
+===== Windows
+
+...some cool links
+
+VisualC++ or Visual Studio or MinGW
+
+==== Run it!
+
+You'll need to create from the current working directory a build directory.
+Preferably a new one so you won't pollute your working directory.
+
+[source,bash]
+mkdir build
+cd build
+
+Then you should run cmake inside the build directory while referring to your working directory.
+
+[source,bash]
+cmake ..
+
+This will choose the default toolset (compilers) and the default project generator.
+While it's possible to use different generators and different compilers using the command line,
+we will show you how to do it using cmake's UI, which is way easier to learn and remember.
+
+(tuto with screenshots...)

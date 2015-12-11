@@ -1,0 +1,59 @@
+= Darwin's documentation
+
+== Prerequisites
+
+Install Homebrew:
+[source,bash]
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+Verify Homebrew is setup correctly:
+[source,bash]
+brew doctor
+
+Install Git and Ruby:
+[source,bash]
+brew install git
+brew install ruby
+
+Add the location where Homebrew installed Ruby to your PATH environment variable:
+[source,bash]
+echo 'PATH=/usr/local/bin:${PATH/:\/usr\/local\/bin}' >> $HOME/.bash_profile
+source $HOME/.bash_profile
+
+Configure RubyGems to install executables into /usr/local/bin so they will be available on your executable path:
+[source,bash]
+echo "gem: -N -n /usr/local/bin" >> $HOME/.gemrc
+
+Install Asciidoctor:
+[source,bash]
+gem install asciidoctor
+
+Verify Asciidoctor is installed and you can execute the asciidoctor command:
+[source,bash]
+asciidoctor -V
+
+Asciidoctor PDF is published in pre-release on RubyGems.org. You can install the published gem using the following command:
+[source,bash]
+gem install --pre asciidoctor-pdf
+
+If you want to syntax highlight source listings, you’ll also want to install CodeRay or Pygments. To be safe, go ahead and install both gems:
+[source,bash]
+gem install coderay pygments.rb
+
+== Usage
+
+To generate html:
+[source,bash]
+asciidoctor index.adoc
+
+To generate pdf:
+[source,bash]
+asciidoctor-pdf index.adoc
+
+== Recommended text editor
+
+Install https://atom.io[Atom]. Then from the Atom editor menus, navigate to Atom ▸ Preferences.
+From there, open the Packages tab and install:
+
+* asciidoc-preview
+* language-asciidoc

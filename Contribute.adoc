@@ -1,0 +1,47 @@
+==== How to contribute
+
+===== GitFlow
+
+The main purpose of using GitFlow is to maintain invariants of the repository:
+
+* Anyone cloning the master branch, or any branch as a matter of fact, from the
+source repository at any time should have a fully working codebase.
+* All provided tests at any given time should pass.
+
+These guarantees make it easy to deploy and rollback changes with a 100% confidence.
+
+Concretely, to start contributing, you should:
+
+. Fork the main repository,
+. Clone the fork locally, if needed, using git clone
+. Choose a working branch using git checkout
+. Create a local branch on top of your current commit
+. Commit some changes using git commit -u
+. Push them to your fork
+. Open a pull request on the original repository.
+. Put some useful information in the description. If the pull request is still incomplete
+or you feel that they need some fine tuning before being reviewed, you should put a WIP in the title.
+. Once you change has been reviewed and tests passed or fixed, you will be asked to squach your commits
+into a single one which will be added to the main repository.
+
+The following sections will show you how to use the recommended tools to simplify your workflow.
+
+====== Using SourceTree
+
+*git squach*
+
+*git log*
+
+*git status*
+
+*git commit*
+
+*git rebase*
+
+*git push*
+
+*git checkout*
+
+*git stach*
+
+====== Using CMake

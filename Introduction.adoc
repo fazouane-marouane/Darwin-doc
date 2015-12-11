@@ -1,0 +1,42 @@
+== Introduction
+
+=== Motivation
+
+Problem solving is the heart of engineering.
+The usual process can be summarized in the following bullet points:
+
+. Model: Here we provide the mathematical abstraction that fully expresses the problem statement.
+We can also, ideally, embed the problem's constrains, if any, in this Model.
+. Reduce: This step consists of a reduction to an already solved problem.
+
+This pattern encourages the reuse of problems' solutions.
+For instance, to solve the TSP problem[link], we may use a graph as a model for the problem
+and reduce TSP to a 'find the shortest Hamiltonian path/cycle' across the corresponding graph.
+
+[...] talk about heuristics, approximations and feasible solutions.
+
+While this approach is very common, it can be somewhat cumbersome. In fact, the process takes time
+and investment while we may not be interested in a complete and exact solution to the problem in hand.
+In the cases we were only interested in some feasible solution, we should be able to get it
+with a minimal effort, engineering-wise. The following steps are what we are striving for here at OpenGA:
+
+. Model: Same as before,
+. Describe: State some properties the solution should hopefully verify,
+. Wait for the solution to pop-up automagically!
+
+Generic meta-heuristics frameworks offer just that and maybe more.[needs more explanation: flexibility, computational efficiency...]
+Genetic Algorithms are the first pillar of our framework. To learn more about them please refer to section [...link...]
+
+All in all, the main purpose is to streamline problem solving, and the engineering/creative process in general.
+You will learn in the following how to use and deploy Darwin and how to contribute to either Darwin or this documentation.
+
+=== Getting started
+
+Darwin's code is mainly written in Cpp and is cross-platform.
+This basically means that it should work on any machine and any OS
+provided you have a proper up-to-date Cpp compiler and the required external libraries.
+This guide will set you up and ready.
+
+include::Installation.adoc[]
+
+include::Contribute.adoc[]
