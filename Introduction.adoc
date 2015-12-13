@@ -2,30 +2,37 @@
 
 === Motivation
 
-Problem solving is the heart of engineering.
-The usual process can be summarized in the following bullet points:
+Discrete optimization is encountered in many engineering fields.
+The usual process of a resolution can be summarized in the following bullet points:
 
-. Model: Here we provide the mathematical abstraction that fully expresses the problem statement.
-We can also, ideally, embed the problem's constrains, if any, in this Model.
+. Model: One has to provide the mathematical abstraction that fully expresses the problem statement.
+We can also, ideally, embed the problem's constrains, if any, in the Model.
 . Reduce: This step consists of a reduction to an already solved problem.
 
 This pattern encourages the reuse of problems' solutions.
 For instance, to solve the TSP problem[link], we may use a graph as a model for the problem
 and reduce TSP to a 'find the shortest Hamiltonian path/cycle' across the corresponding graph.
-
-[...] talk about heuristics, approximations and feasible solutions.
-
 While this approach is very common, it can be somewhat cumbersome. In fact, the process takes time
 and investment while we may not be interested in a complete and exact solution to the problem in hand.
-In the cases we were only interested in some feasible solution, we should be able to get it
+
+In optimization, constraints play an important role. Linear constraints reveal to be NP-hard,
+and non linear constraints are undecidable. Concerning integer, linear and quadratic programming,
+there already exists powerful solvers (such as Cplex), and on-demand algorithms an be implemented
+(local research, Tabu search)
+In this context, Darwin Solver (TM) is a solver well-suited for optimization and combinatorial problems
+that are not part of classical problems, and for which an optimal solution can't be found in a reasonable
+time with greedy algorithms.
+
+
+In the cases we are only interested in some feasible solution, we should be able to get it
 with a minimal effort, engineering-wise. The following steps are what we are striving for here at OpenGA:
 
 . Model: Same as before,
 . Describe: State some properties the solution should hopefully verify,
 . Wait for the solution to pop-up automagically!
 
-Generic meta-heuristics frameworks offer just that and maybe more.[needs more explanation: flexibility, computational efficiency...]
-Genetic Algorithms are the first pillar of our framework. To learn more about them please refer to section [...link...]
+Generic meta-heuristics frameworks allow this, with flexibility and computational efficiency.
+In this context, genetic Algorithms are the first pillar of our framework. To learn more about them please refer to section [...link...]
 
 All in all, the main purpose is to streamline problem solving, and the engineering/creative process in general.
 You will learn in the following how to use and deploy Darwin and how to contribute to either Darwin or this documentation.
