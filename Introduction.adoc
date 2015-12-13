@@ -17,8 +17,8 @@ and investment while we may not be interested in a complete and exact solution t
 
 In optimization, constraints play an important role. Linear constraints reveal to be NP-hard,
 and non linear constraints are undecidable. Concerning integer, linear and quadratic programming,
-there already exists powerful solvers (such as Cplex), and on-demand algorithms an be implemented
-(local research, Tabu search)
+there already exists powerful solvers (such as Cplex), and on-demand algorithms can be implemented
+(as local research, Tabu search)
 In this context, Darwin Solver (TM) is a solver well-suited for optimization and combinatorial problems
 that are not part of classical problems, and for which an optimal solution can't be found in a reasonable
 time with greedy algorithms.
