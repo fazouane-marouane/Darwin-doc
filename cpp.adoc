@@ -7,17 +7,6 @@
 
 == Random numbers
 
-[stem]
-++++
-C = \alpha + \beta Y^{\gamma} + \epsilon
-++++
-
-[asciimath]
-++++
-C = \alpha + \beta Y^{\gamma} + \epsilon
-++++
-
-
 === Pseudo-random number generators
 
 A pseudorandom number generator (PRNG) is an algorithm for generating a sequence of numbers
@@ -113,51 +102,51 @@ Results from the generator are then adapted to some probability distribution.
 The +++ C++ +++ Standard Library provides some ready to use distributions and one can create some custom ones:
 
 Uniform distributions::
-* uniform_int_distribution:
+* `uniform_int_distribution`:
 produces integer values evenly distributed across a range
-* uniform_real_distribution:
+* `uniform_real_distribution`:
 produces real values evenly distributed across a range
-* generate_canonical:
+* `generate_canonical`:
 evenly distributes real values of given precision across [0, 1)
 Bernoulli distributions::
-* bernoulli_distribution:
+* `bernoulli_distribution`:
 produces bool values on a Bernoulli distribution.
-* binomial_distribution:
+* `binomial_distribution`:
 produces integer values on a binomial distribution.
-* negative_binomial_distribution:
+* `negative_binomial_distribution`:
 produces integer values on a negative binomial distribution.
-* geometric_distribution:
+* `geometric_distribution`:
 produces integer values on a geometric distribution.
 Poisson distributions::
-* poisson_distribution:
+* `poisson_distribution`:
 produces integer values on a poisson distribution.
-* exponential_distribution:
+* `exponential_distribution`:
 produces real values on an exponential distribution.
-* gamma_distribution:
+* `gamma_distribution`:
 produces real values on an gamma distribution.
-* weibull_distribution:
+* `weibull_distribution`:
 produces real values on a Weibull distribution.
-* extreme_value_distribution:
+* `extreme_value_distribution`:
 produces real values on an extreme value distribution.
 Normal distributions::
-* normal_distribution:
+* `normal_distribution`:
 produces real values on a standard normal (Gaussian) distribution.
-* lognormal_distribution:
+* `lognormal_distribution`:
 produces real values on a lognormal distribution.
-* chi_squared_distribution:
+* `chi_squared_distribution`:
 produces real values on a chi-squared distribution.
-* cauchy_distribution:
+* `cauchy_distribution`:
 produces real values on a Cauchy distribution.
-* fisher_f_distribution:
+* `fisher_f_distribution`:
 produces real values on a Fisher's F-distribution.
-* student_t_distribution:
+* `student_t_distribution`:
 produces real values on a Student's t-distribution.
 Sampling distributions::
-* discrete_distribution:
+* `discrete_distribution`:
 produces random integers on a discrete distribution.
-* piecewise_constant_distribution:
+* `piecewise_constant_distribution`:
 produces real values distributed on constant subintervals.
-* piecewise_linear_distribution:
+* `piecewise_linear_distribution`:
 produces real values distributed on defined subintervals.
 
 
