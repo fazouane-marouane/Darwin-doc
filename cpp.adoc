@@ -1,0 +1,214 @@
+= C++
+:linkcss:
+:icons: font
+:math:
+:stem: latexmath
+:source-highlighter: CodeMirror
+
+== Random numbers
+
+[stem]
+++++
+C = \alpha + \beta Y^{\gamma} + \epsilon
+++++
+
+[asciimath]
+++++
+C = \alpha + \beta Y^{\gamma} + \epsilon
+++++
+
+
+=== Pseudo-random number generators
+
+A pseudorandom number generator (PRNG) is an algorithm for generating a sequence of numbers
+whose properties approximate the properties of sequences of random numbers.
+The PRNG-generated sequence is not truly random, because it is completely determined by a relatively small set of initial values,
+called the PRNG's seed (which may include truly random values).
+Although sequences that are closer to truly random can be generated using hardware random number generators, pseudorandom number generators
+are important in practice for their speed in number generation and their reproducibility.
+
+To generate the seed values in C++, we use a `random_device` which can be a non-deterministic uniform integer generator when possible.
+The following shows how to create a random_device and how to get a seed value.
+
+[source,cpp]
+----
+#include <random>
+std::random_device rd;
+auto seed = rd();
+----
+
++++ The C++ Standard Library +++ provides a good deal of the commonly used PRNGs.
+Although these are not Cryptographically secure algorithms, and they shouldn't be used in a cryptographically constrained system,
+they are fast and they give fairly good results in other fields of application, like mathematical simulation.
+
+* linear_congruential_engine
+* mersenne_twister_engine
+* subtract_with_carry_engine
+
+To instantiate one of the above generator, one must give it the algorithm parameters.
+For instance, a Mersenne Twister depends on 13 parameters. So, if you don't require this extra fine tuning possibilities,
+you can use the common predefined random number generators.
+
+[source,cpp]
+----
+#include <random>
+std::random_device rd;
+auto seed = rd();
+std::mt19937 generator(seed); // based on the Mersenne prime 2^19937-1
+unsigned int random_number = generator();
+----
+
+
+=== Random Distribution
+
+When working with random numbers, we usually require random variables to obey a given distribution.
+For instance, `head or tail` kind of variables have a Bernoulli distribution: probability `p` that
+we will get `head` and `1-p` to get `tails`.
+
+[source,cpp]
+----
+#include <random>
+std::random_device rd;
+auto seed = rd();
+
+std::mt19937 generator(seed);
+auto p = 0.25;
+std::bernoulli_distribution distribution(p);
+bool headOrTails = distribution(generator);
+----
+
+PRNGs and Random Distributions are all deterministic algorithms, and only the seed value provided
+by the random device that can be non-deterministic.
+This basically implies two things:
+
+* Code should behave the same when given the same seed values, provided there is no other side effect,
+such as Threads, IO, Time, Network activity... This means that the whole system is reproducible.
+This can be helpful when debugging a system and when heavily depends on random numbers.
+* The more seeds you give to the system, the more the entropy, and thus the quality, increases.
+
+To illustrate the last point:
+to take the full advantage of the generator `std::mt19937`, we should give it a seed as large as `std::mt19937::state_size`.
+The following code shows how we should've created the generator.
+
+[source,cpp,linenums]
+----
+#include <random>
+#include <array>
+#include <algorithm>
+std::random_device rd;
+std::array<int, std::mt19937::state_size> seeds; // <1>
+std::generate_n(seeds.data(), seeds.size(), std::ref(rd));
+std::seed_seq sequence(std::begin(seeds), std::end(seeds));
+
+std::mt19937 generator(seed);
+auto p = 0.25;
+std::bernoulli_distribution distribution(p);
+bool headOrTails = distribution(generator);
+----
+
+All in all, to use random number in +++ C++ +++ one should choose a generation algorithm and seed it
+some non-deterministic values that fits its state. The obtained generator meets high standards
+and thus using it will yield high quality results.
+Results from the generator are then adapted to some probability distribution.
+The +++ C++ +++ Standard Library provides some ready to use distributions and one can create some custom ones:
+
+Uniform distributions::
+* uniform_int_distribution:
+produces integer values evenly distributed across a range
+* uniform_real_distribution:
+produces real values evenly distributed across a range
+* generate_canonical:
+evenly distributes real values of given precision across [0, 1)
+Bernoulli distributions::
+* bernoulli_distribution:
+produces bool values on a Bernoulli distribution.
+* binomial_distribution:
+produces integer values on a binomial distribution.
+* negative_binomial_distribution:
+produces integer values on a negative binomial distribution.
+* geometric_distribution:
+produces integer values on a geometric distribution.
+Poisson distributions::
+* poisson_distribution:
+produces integer values on a poisson distribution.
+* exponential_distribution:
+produces real values on an exponential distribution.
+* gamma_distribution:
+produces real values on an gamma distribution.
+* weibull_distribution:
+produces real values on a Weibull distribution.
+* extreme_value_distribution:
+produces real values on an extreme value distribution.
+Normal distributions::
+* normal_distribution:
+produces real values on a standard normal (Gaussian) distribution.
+* lognormal_distribution:
+produces real values on a lognormal distribution.
+* chi_squared_distribution:
+produces real values on a chi-squared distribution.
+* cauchy_distribution:
+produces real values on a Cauchy distribution.
+* fisher_f_distribution:
+produces real values on a Fisher's F-distribution.
+* student_t_distribution:
+produces real values on a Student's t-distribution.
+Sampling distributions::
+* discrete_distribution:
+produces random integers on a discrete distribution.
+* piecewise_constant_distribution:
+produces real values distributed on constant subintervals.
+* piecewise_linear_distribution:
+produces real values distributed on defined subintervals.
+
+
+=== Custom random distribution
+
+
+
+== Functions in C++
+
+There are many different ways of creating functions in +++ C++ +++.
+
+=== The C way
+[source,cpp]
+----
+float Identity(float value)
+{ return value; }
+int Successor(int value)
+{ return value+1; }
+----
+
+While it may be possible to create complex programs with this approach, it suffers from a couples limitations.
+First, generic functions like `Identity` or `Successor` have the same implementation no matter what type
+we feed it. However, in C-style functions, we should duplicate the implementation for every needed type even for trivial functions!
+
+[source,cpp]
+----
+float Identity_float(float value)
+{ return value; }
+int Identity_int(int value)
+{ return value; }
+string Identity_string(string value)
+{ return value; }
+----
+
+This limitation can be addressed using generic functions.
+
+=== Generic functions
+
+[source,cpp]
+----
+#include <cassert>
+template<typename T>
+T Identity(T value)
+{ return value; }
+// ...
+assert(Identity(5)==5);
+----
+
+The above code defines once and for all the identity function, which can be used on any arbitrary type.
+
+
+Functions are called ``pure'' when they do not access mutable data, and do not change some global state
+(say, write in the console or read from from a file handler)
+and when they do not change the value of their arguments.
